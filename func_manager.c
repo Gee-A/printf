@@ -31,13 +31,13 @@ int _switch(char c, va_list arg)
 	switch (c)
 	{
 		case '%':
-			cont += print_character(arg);
+			cont += print_char(arg);
 			break;
 		case 'b':
 			cont += print_unsign(arg, 2);
 			break;
 		case 'c':
-			cont += print_character(arg);
+			cont += print_char(arg);
 			break;
 		case 'd':
 		case 'i':

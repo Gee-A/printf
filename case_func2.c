@@ -60,14 +60,12 @@ int print_ptr(va_list arg)
 int print_rot13(va_list arg)
 {
 	register short i, j;
-	char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char ROT13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char chars[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 	char *s = va_arg(arg, char *);
 
 	if (!s)
-	{
 		return (-1);
-	}
 
 	for (j = 0; s[j]; j++)
 	{
@@ -76,8 +74,8 @@ int print_rot13(va_list arg)
 		else
 		{
 			for (i = 0; i <= 52; i++)
-				if (s[j] == rot13[i])
-					_putchar(ROT13[i]);
+				if (s[j] == chars[i])
+					_putchar(rot13[i]);
 		}
 	}
 	return (j);
@@ -86,29 +84,20 @@ int print_rot13(va_list arg)
 /**
  * print_rev - prints a string in reverse
  * @arg: argument from _printf
- * if a flag is passed to _printf
  * Return: length of the printed string
  */
 int print_rev(va_list arg)
 {
-	int i = 0;
-	int j;
-	char *s = va_arg(arg, char *);
+	int i = -1;
+	char *s, *t;
 
+	s = va_arg(arg, char *);
 	if (!s)
-	{
 		return (-1);
-	}
 
-	while (s[i])
-	{
-		i++;
-	}
-
-	for (j = i - 1; j >= 0; j--)
-	{
-		_putchar(s[j]);
-	}
-
+	i = _strlen(s);
+	t = i + s;
+	while (*t != *s)
+		_putchar(*--t);
 	return (i);
 }

@@ -1,11 +1,12 @@
 #include "main.h"
+
 /**
- * print_character - prints character
+ * print_char - prints character
  * @arg: va_list parameter
- * Description: print character
- * Return: 1
+ *
+ * Return: 1 (Success)
  */
-int print_character(va_list arg)
+int print_char(va_list arg)
 {
 	int i;
 
@@ -18,12 +19,11 @@ int print_character(va_list arg)
  * print_sign - print sign
  * @arg: va_list parameter
  * @base: base 10, 8, 16, 2 etc..
- * Description: print numbers and signed
  * Return: num of characters
  */
 int print_sign(va_list arg, int base)
 {
-	int i = 0, cont = 0;
+	int i = 0, count = 0;
 	char *s;
 
 	i = va_arg(arg, int);
@@ -31,61 +31,54 @@ int print_sign(va_list arg, int base)
 	{
 		i = -(i);
 		_putchar('-');
-		cont += 1;
+		count += 1;
 	}
 	s = convert("0123456789ABCDEF", i, base);
 	_puts(s);
-	cont += _strlen(s);
-	return (cont);
+	count += _strlen(s);
+	return (count);
 }
 /**
  * print_unsign - print_unsign
  * @arg: va_list parameter
  * @base: base 10, 8, 16 etc..
- * Description: print numbers without signed
  * Return: num of characters
  */
 int print_unsign(va_list arg, int base)
 {
-	int cont = 0;
+	int count = 0;
 	unsigned int i;
 	char *s;
 
 	i = va_arg(arg, unsigned int);
 	s = convert("0123456789ABCDEF", i, base);
 	_puts(s);
-	cont = _strlen(s);
+	count = _strlen(s);
 
-	return (cont);
+	return (count);
 
 }
 /**
  * print_string - print string
  * @arg: va_list parameter
- * Description: print string
  * Return: num of characters
  */
 int print_string(va_list arg)
 {
 	char *s;
-	int cont = 0;
 
 	s = va_arg(arg, char *);
 	if (!s)
-	{
 		s = "(null)";
-		_puts(s);
 
-		return (_strlen(s));
-	}
 	_puts(s);
-	cont = _strlen(s);
-	return (cont);
+	return (_strlen(s));
 }
+
 /**
  * print_base16_upper_lower - print_base16_upper_lower
  * @arg: va_list parameter
- *@representation: pointer parameter
+ * @representation: pointer parameter
  * Description: This function takes 0123456789ABCDEF or 0123456789abcdef
  * in representation parameter for print hexadecimal format
  * Return: num of characters
